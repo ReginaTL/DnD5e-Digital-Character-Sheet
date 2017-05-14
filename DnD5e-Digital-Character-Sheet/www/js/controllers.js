@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['starter.services'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -9,7 +9,12 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
-  
+
+})
+
+.controller('StatsCtrl', function($scope, $stateParams, Database) {
+  $scope.name = Database.executeQuery("SELECT * FROM skills", []);
+  console.log(Database.executeQuery("SELECT * FROM skills", []));
 })
 
 .controller('PlaylistsCtrl', function($scope) {
