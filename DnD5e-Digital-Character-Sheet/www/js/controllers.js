@@ -12,27 +12,35 @@ angular.module('starter.controllers', ['starter.services'])
 
 })
 
-.controller('StatsCtrl', function($scope, $stateParams, Database, Character) {
+.controller('StatsCtrl', function($scope, $stateParams, $ionicPopup, Database, Character) {
   Character.getById(1).then(function(json){
     $scope.character = json;
     $scope.initiative = Math.floor((json.dexterity-10)/2);
   });
 
+  $scope.hpPopup = function(){
+    $scope.data = {};
+
+    var myPopup = $ionicPopup.show({
+    template: '<input type="text" ng-model="data.currHP">',
+    title: 'Max HP: ' + $scope.character.hp,
+    subTitle: 'Enter Current HP:',
+    scope: $scope,
+    buttons: [
+      { text: 'Cancel' },
+      {
+        text: '<b>Ok</b>',
+        type: 'button my-red',
+        onTap: function(e) {
+          Character.setHP(1, $scope.data.currHP);
+          Character.getById(1).then(function(json){$scope.character = json;});
+        }
+      }
+    ]
+    });
+  };
+
   $scope.calculateModifier = function(stat){
     return Math.floor((stat-10)/2);
   };
-})
-
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-})
-
-.controller('PlaylistCtrl', function($scope, $stateParams) {
 });

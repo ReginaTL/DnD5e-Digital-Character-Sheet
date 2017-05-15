@@ -40,6 +40,7 @@ angular.module('starter.services', ['ngCordova'])
           alignment: result.rows.item(i).alignment,
           background: result.rows.item(i).background,
           hp: result.rows.item(i).hp,
+          currHP: result.rows.item(i).currHP,
           speed: result.rows.item(i).speed,
           proficiency: result.rows.item(i).proficiency,
           hitdice: result.rows.item(i).hitdice,
@@ -62,6 +63,10 @@ angular.module('starter.services', ['ngCordova'])
       }
       return character;
     });
+  }
+
+  this.setHP = function(id, currHP){
+    return Database.executeQuery("UPDATE character SET currHP = ? WHERE id = ?;", [currHP, id]);
   }
 
   return this;

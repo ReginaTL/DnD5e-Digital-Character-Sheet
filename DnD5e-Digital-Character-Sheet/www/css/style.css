@@ -1,5 +1,7 @@
 /* Custom styles for each template */
-
+.my-red {
+  background-color: #ff7770;
+}
 /* Basic Stats Styles */
 h1 {
   font-size: 16pt;
