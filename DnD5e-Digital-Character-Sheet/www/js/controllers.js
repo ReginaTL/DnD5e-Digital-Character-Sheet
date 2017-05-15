@@ -13,10 +13,14 @@ angular.module('starter.controllers', ['starter.services'])
 })
 
 .controller('StatsCtrl', function($scope, $stateParams, Database, Character) {
-  $scope.name = "";
   Character.getById(1).then(function(json){
-    $scope.name = json.name;
+    $scope.character = json;
+    $scope.initiative = Math.floor((json.dexterity-10)/2);
   });
+
+  $scope.calculateModifier = function(stat){
+    return Math.floor((stat-10)/2);
+  };
 })
 
 .controller('PlaylistsCtrl', function($scope) {
