@@ -1,0 +1,146 @@
+<ion-view view-title="Basic Stats">
+  <ion-content>
+    <h1>{{character.name}}</h1>
+    <h2>{{character.race}} {{character.class}} lvl {{character.level}}</h2>
+    <div class="bubbles">
+      <div class="row first-row-b">
+        <div class="col bubble">
+          <h4>Initiative</h4>
+          <p>{{initiative}}</p>
+        </div>
+        <div class="col bubble" ng-click="hpEdit()">
+          <h4>HP</h4>
+          <p>{{character.currHP}}</p>
+        </div>
+        <div class="col bubble">
+          <h4>Speed</h4>
+          <p>{{character.speed}}</p>
+        </div>
+      </div>
+      <div class="row second-row-b">
+        <div class="col bubble">
+          <h4>Proficiency</h4>
+          <p>{{character.proficiency}}</p>
+        </div>
+        <div class="col bubble">
+          <h4>Hit Dice</h4>
+          <p>{{character.hitdice}}</p>
+        </div>
+        <div class="col bubble">
+          <h4>Armor Class</h4>
+          <p>{{character.ac}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="row first-row-s">
+        <div class="col big-stat">
+            <h4>Strength</h4>
+            <div class="row">
+              <div class="col little-stat">
+                <h5>Stat</h5>
+                <p>{{character.strength}}</p>
+              </div>
+              <div class="col little-stat">
+                <h5>Modifier</h5>
+                <p>+{{calculateModifier(character.strength)}}</p>
+              </div>
+              <div class="col little-stat">
+                <h5>Save</h5>
+                <p>+{{calculateModifier(character.strength)}}</p>
+              </div>
+            </div>
+        </div>
+        <div class="col big-stat">
+            <h4>Intelligence</h4>
+            <div class="row">
+              <div class="col little-stat">
+                <h5>Stat</h5>
+                <p>{{character.intelligence}}</p>
+              </div>
+              <div class="col little-stat">
+                <h5>Modifier</h5>
+                <p>+{{calculateModifier(character.intelligence)}}</p>
+              </div>
+              <div class="col little-stat">
+                <h5>Save</h5>
+                <p>+{{calculateModifier(character.intelligence)}}</p>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="row second-row-s">
+        <div class="col big-stat">
+            <h4>Constitution</h4>
+            <div class="row">
+              <div class="col little-stat">
+                <h5>Stat</h5>
+                <p>{{character.constitution}}</p>
+              </div>
+              <div class="col little-stat">
+                <h5>Modifier</h5>
+                <p>+{{calculateModifier(character.constitution)}}</p>
+              </div>
+              <div class="col little-stat">
+                <h5>Save</h5>
+                <p>+{{calculateModifier(character.constitution)}}</p>
+              </div>
+            </div>
+        </div>
+        <div class="col big-stat">
+            <h4>Wisdom</h4>
+            <div class="row">
+              <div class="col little-stat">
+                <h5>Stat</h5>
+                <p>{{character.wisdom}}</p>
+              </div>
+              <div class="col little-stat">
+                <h5>Modifier</h5>
+                <p>+{{calculateModifier(character.wisdom)}}</p>
+              </div>
+              <div class="col little-stat">
+                <h5>Save</h5>
+                <p>+{{calculateModifier(character.wisdom)}}</p>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="row third-row-s">
+        <div class="col big-stat">
+            <h4>Dexterity</h4>
+            <div class="row">
+              <div class="col little-stat">
+                <h5>Stat</h5>
+                <p>{{character.dexterity}}</p>
+              </div>
+              <div class="col little-stat">
+                <h5>Modifier</h5>
+                <p>+{{calculateModifier(character.dexterity)}}</p>
+              </div>
+              <div class="col little-stat">
+                <h5>Save</h5>
+                <p>+{{calculateModifier(character.dexterity)}}</p>
+              </div>
+            </div>
+        </div>
+        <div class="col big-stat">
+            <h4>Charisma</h4>
+            <div class="row">
+              <div class="col little-stat">
+                <h5>Stat</h5>
+                <p>{{character.charisma}}</p>
+              </div>
+              <div class="col little-stat">
+                <h5>Modifier</h5>
+                <p>+{{calculateModifier(character.charisma)}}</p>
+              </div>
+              <div class="col little-stat">
+                <h5>Save</h5>
+                <p>+{{calculateModifier(character.charisma)}}</p>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

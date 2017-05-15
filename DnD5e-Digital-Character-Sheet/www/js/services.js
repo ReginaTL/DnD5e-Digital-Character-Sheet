@@ -65,8 +65,12 @@ angular.module('starter.services', ['ngCordova'])
     });
   }
 
-  this.setHP = function(id, currHP){
+  this.setCurrHP = function(id, currHP){
     return Database.executeQuery("UPDATE character SET currHP = ? WHERE id = ?;", [currHP, id]);
+  }
+
+  this.setHP = function(id, hp){
+    return Database.executeQuery("UPDATE character SET hp = ? WHERE id = ?;", [hp, id]);
   }
 
   return this;

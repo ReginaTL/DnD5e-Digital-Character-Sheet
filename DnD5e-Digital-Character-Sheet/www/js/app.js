@@ -74,6 +74,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
     }
   })
 
+  .state('app.stats-edit', {
+    url: '/stats-edit',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/stats-edit.html',
+        controller: 'StatsEditCtrl'
+      }
+    }
+  })
+
   .state('app.browse', {
       url: '/browse',
       views: {
