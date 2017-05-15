@@ -28,19 +28,29 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
         $rootScope.db = window.openDatabase("database.db", '1.0', 'App Demo', 65536);
     }
 
+    // Reset database when necessary on browser
+    $cordovaSQLite.execute($rootScope.db, "DROP TABLE character;");
+    $cordovaSQLite.execute($rootScope.db, "DROP TABLE skills;");
+    $cordovaSQLite.execute($rootScope.db, "DROP TABLE equipment;");
+    $cordovaSQLite.execute($rootScope.db, "DROP TABLE char_equip;");
+    $cordovaSQLite.execute($rootScope.db, "DROP TABLE spells;");
+    $cordovaSQLite.execute($rootScope.db, "DROP TABLE char_spells;");
+    $cordovaSQLite.execute($rootScope.db, "DROP TABLE languages;");
+    $cordovaSQLite.execute($rootScope.db, "DROP TABLE char_lang;");
+
     // Setup Tables
-    $cordovaSQLite.execute($rootScope.db, "CREATE TABLE character(id INT PRIMARY KEY AUTOINCREMENT, name VARCHAR(255), race VARCHAR(255), class VARCHAR(255), level INT, experience INT, alignment VARCHAR(255), background VARCHAR(255), hp INT, speed INT, proficiency INT, hitdice VARCHAR(55), ac INT, strength INT, intelligence INT, constitution INT, dexterity INT, charisma INT, wisdom INT, spellAbility VARCHAR(255), spellSaveDC INT, spellAttackBonus INT, pp INT, gp INT, ep INT, sp INT, cp INT);");
-    $cordovaSQLite.execute($rootScope.db, "CREATE TABLE skills(name VARCHAR(255) PRIMARY KEY, baseType VARCHAR(3));");
-    $cordovaSQLite.execute($rootScope.db, "CREATE TABLE equipment(id INT PRIMARY KEY AUTOINCREMENT, name VARCHAR(255), damageType VARCHAR(255), damageDice, VARCHAR(255), bonus INT);");
-    $cordovaSQLite.execute($rootScope.db, "CREATE TABLE char_equip(charID INT, equipID INT);");
-    $cordovaSQLite.execute($rootScope.db, "CREATE TABLE spells(id INT PRIMARY KEY AUTOINCREMENT, level INT);");
-    $cordovaSQLite.execute($rootScope.db, "CREATE TABLE char_spells(charID INT, spellID INT);");
-    $cordovaSQLite.execute($rootScope.db, "CREATE TABLE languages(id INT PRIMARY KEY AUTOINCREMENT, name VARCHAR(255));");
-    $cordovaSQLite.execute($rootScope.db, "CREATE TABLE char_lang(charID INT, langID INT);");
+    $cordovaSQLite.execute($rootScope.db, "CREATE TABLE IF NOT EXISTS character(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, race TEXT, class TEXT, level INT, experience INT, alignment TEXT, background TEXT, hp INT, speed INT, proficiency INT, hitdice TEXT, ac INT, strength INT, intelligence INT, constitution INT, dexterity INT, charisma INT, wisdom INT, spellAbility TEXT, spellSaveDC INT, spellAttackBonus INT, pp INT, gp INT, ep INT, sp INT, cp INT);").then(function(result){},function(error){console.log(error);});
+    $cordovaSQLite.execute($rootScope.db, "CREATE TABLE IF NOT EXISTS skills(name TEXT, baseType TEXT);").then(function(result){},function(error){console.log(error);});
+    $cordovaSQLite.execute($rootScope.db, "CREATE TABLE IF NOT EXISTS equipment(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, damageType TEXT, damageDice, TEXT, bonus INT);").then(function(result){},function(error){console.log(error);});
+    $cordovaSQLite.execute($rootScope.db, "CREATE TABLE IF NOT EXISTS char_equip(charID INT, equipID INT);").then(function(result){},function(error){console.log(error);});
+    $cordovaSQLite.execute($rootScope.db, "CREATE TABLE IF NOT EXISTS spells(id INTEGER PRIMARY KEY AUTOINCREMENT, level INT);").then(function(result){},function(error){console.log(error);});
+    $cordovaSQLite.execute($rootScope.db, "CREATE TABLE IF NOT EXISTS char_spells(charID INT, spellID INT);").then(function(result){},function(error){console.log(error);});
+    $cordovaSQLite.execute($rootScope.db, "CREATE TABLE IF NOT EXISTS languages(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT);").then(function(result){},function(error){console.log(error);});
+    $cordovaSQLite.execute($rootScope.db, "CREATE TABLE IF NOT EXISTS char_lang(charID INT, langID INT);").then(function(result){},function(error){console.log(error);});
     // Setup Skills - always the same
-    $cordovaSQLite.execute($rootScope.db, "INSERT INTO skills(name, basType) VALUES('Acrobatics', 'DEX'),('Animal Handling', 'WIS'), ('Arcana', 'INT'), ('Athletics', 'STR'), ('Deception', 'CHA'), ('History', 'INT'), ('Insight', 'WIS'), ('Intimidation', 'CHA'), ('Invesitgation', 'INT'), ('Medicine', 'WIS'), ('Nature', 'INT'), ('Perception', 'WIS'), ('Performance', 'CHA'), ('Persuasion', 'CHA'), ('Religion', 'CHA'), ('Sleight of Hand', 'DEX'), ('Stealth', 'DEX'), ('Survival', 'WIS');");
+    $cordovaSQLite.execute($rootScope.db, "INSERT INTO skills(name, baseType) VALUES('Acrobatics', 'DEX'),('Animal Handling', 'WIS'), ('Arcana', 'INT'), ('Athletics', 'STR'), ('Deception', 'CHA'), ('History', 'INT'), ('Insight', 'WIS'), ('Intimidation', 'CHA'), ('Invesitgation', 'INT'), ('Medicine', 'WIS'), ('Nature', 'INT'), ('Perception', 'WIS'), ('Performance', 'CHA'), ('Persuasion', 'CHA'), ('Religion', 'CHA'), ('Sleight of Hand', 'DEX'), ('Stealth', 'DEX'), ('Survival', 'WIS');").then(function(result){},function(error){console.log(error);});
     // Setup example data
-    $cordovaSQLite.execute($rootScope.db, "INSERT INTO character(name, race, class, level, experience, alignment, background, hp, speed, proficiency, hitdice, ac, strength, intelligence, constitution, dexterity, charisma, wisdom, spellAbility, spellSaveDC, spellAttackBonus, pp, gp, ep, sp, cp) VALUES ('Madame Daphne Blanchet Benoist', 'Tiefling', 'Warlock', 5, 0, 'neutral', 'courtier', 27, 30, 3, '5d8', 14, 12, 16, 15, 15, 19, 18, 'CHA', 15, 6, 45, 220, 0, 0, 0);");
+    $cordovaSQLite.execute($rootScope.db, "INSERT INTO character(name, race, class, level, experience, alignment, background, hp, speed, proficiency, hitdice, ac, strength, intelligence, constitution, dexterity, charisma, wisdom, spellAbility, spellSaveDC, spellAttackBonus, pp, gp, ep, sp, cp) VALUES ('Madame Daphne Blanchet Benoist', 'Tiefling', 'Warlock', 5, 0, 'neutral', 'courtier', 27, 30, 3, '5d8', 14, 12, 16, 15, 15, 19, 18, 'CHA', 15, 6, 45, 220, 0, 0, 0);").then(function(result){},function(error){console.log(error);});
   });
 })
 

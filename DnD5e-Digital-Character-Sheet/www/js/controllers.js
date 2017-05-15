@@ -12,9 +12,11 @@ angular.module('starter.controllers', ['starter.services'])
 
 })
 
-.controller('StatsCtrl', function($scope, $stateParams, Database) {
-  $scope.name = Database.executeQuery("SELECT * FROM skills", []);
-  console.log(Database.executeQuery("SELECT * FROM skills", []));
+.controller('StatsCtrl', function($scope, $stateParams, Database, Character) {
+  $scope.name = "";
+  Character.getById(1).then(function(json){
+    $scope.name = json.name;
+  });
 })
 
 .controller('PlaylistsCtrl', function($scope) {

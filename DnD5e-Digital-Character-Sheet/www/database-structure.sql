@@ -1,10 +1,10 @@
-CREATE TABLE character(id INT PRIMARY KEY AUTOINCREMENT, name VARCHAR(255), race VARCHAR(255), class VARCHAR(255), level INT, experience INT, alignment VARCHAR(255), background VARCHAR(255), hp INT, speed INT, proficiency INT, hitdice VARCHAR(55), ac INT, strength INT, intelligence INT, constitution INT, dexterity INT, charisma INT, wisdom INT, spellAbility VARCHAR(255), spellSaveDC INT, spellAttackBonus INT, pp INT, gp INT, ep INT, sp INT, cp INT);
-CREATE TABLE skills(name VARCHAR(255) PRIMARY KEY, baseType VARCHAR(3));
-CREATE TABLE equipment(id INT PRIMARY KEY AUTOINCREMENT, name VARCHAR(255), damageType VARCHAR(255), damageDice, VARCHAR(255), bonus INT);
+CREATE TABLE character(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, race TEXT, class TEXT, level INT, experience INT, alignment TEXT, background TEXT, hp INT, speed INT, proficiency INT, hitdice TEXT, ac INT, strength INT, intelligence INT, constitution INT, dexterity INT, charisma INT, wisdom INT, spellAbility TEXT, spellSaveDC INT, spellAttackBonus INT, pp INT, gp INT, ep INT, sp INT, cp INT);
+CREATE TABLE skills(name TEXT PRIMARY KEY, baseType TEXT);
+CREATE TABLE equipment(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, damageType TEXT, damageDice, TEXT, bonus INT);
 CREATE TABLE char_equip(charID INT, equipID INT);
-CREATE TABLE spells(id INT PRIMARY KEY AUTOINCREMENT, level INT);
+CREATE TABLE spells(id INTEGER PRIMARY KEY AUTOINCREMENT, level INT);
 CREATE TABLE char_spells(charID INT, spellID INT);
-CREATE TABLE languages(id INT PRIMARY KEY AUTOINCREMENT, name VARCHAR(255));
+CREATE TABLE languages(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT);
 CREATE TABLE char_lang(charID INT, langID INT);
-INSERT INTO skills(name, basType) VALUES('Acrobatics', 'DEX'),('Animal Handling', 'WIS'), ('Arcana', 'INT'), ('Athletics', 'STR'), ('Deception', 'CHA'), ('History', 'INT'), ('Insight', 'WIS'), ('Intimidation', 'CHA'), ('Invesitgation', 'INT'), ('Medicine', 'WIS'), ('Nature', 'INT'), ('Perception', 'WIS'), ('Performance', 'CHA'), ('Persuasion', 'CHA'), ('Religion', 'CHA'), ('Sleight of Hand', 'DEX'), ('Stealth', 'DEX'), ('Survival', 'WIS');
+INSERT INTO skills(name, baseType) VALUES('Acrobatics', 'DEX'),('Animal Handling', 'WIS'), ('Arcana', 'INT'), ('Athletics', 'STR'), ('Deception', 'CHA'), ('History', 'INT'), ('Insight', 'WIS'), ('Intimidation', 'CHA'), ('Invesitgation', 'INT'), ('Medicine', 'WIS'), ('Nature', 'INT'), ('Perception', 'WIS'), ('Performance', 'CHA'), ('Persuasion', 'CHA'), ('Religion', 'CHA'), ('Sleight of Hand', 'DEX'), ('Stealth', 'DEX'), ('Survival', 'WIS');
 INSERT INTO character(name, race, class, level, experience, alignment, background, hp, speed, proficiency, hitdice, ac, strength, intelligence, constitution, dexterity, charisma, wisdom, spellAbility, spellSaveDC, spellAttackBonus, pp, gp, ep, sp, cp) VALUES ('Madame Daphne Blanchet Benoist', 'Tiefling', 'Warlock', 5, 0, 'neutral', 'courtier', 27, 30, 3, '5d8', 14, 12, 16, 15, 15, 19, 18, 'CHA', 15, 6, 45, 220, 0, 0, 0);
