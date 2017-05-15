@@ -1,1 +1,54 @@
-/* Empty. Add your own CSS if you like */
+/* Custom styles for each template */
+
+/* Basic Stats Styles */
+h1 {
+  font-size: 16pt;
+  text-align: center;
+}
+
+h2 {
+  font-size: 14pt;
+  text-align: center;
+}
+
+.bubble{
+  text-align: center;
+}
+
+.bubble > p{
+  text-align: center;
+  background-color: #ff7770;
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  padding-top: 25%;
+  font-size: 28pt;
+  color: #595959;
+  margin: auto;
+}
+
+.bubble > h4{
+  font-size: 14pt;
+}
+
+.stats {
+  text-align: center;
+}
+
+.big-stat {
+  border-style: solid;
+  border-width: thin;
+  border-radius: 10px;
+  margin: 6px;
+}
+
+.big-stat > h4 {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+.little-stat {
+  margin-bottom: 0px;
+  margin-top: 0px;
+  padding-top: 0px;
+}
