@@ -2,6 +2,12 @@
 .my-red {
   background-color: #ff7770;
 }
+
+.my-blue{
+  -webkit-box-shadow:0 0 50px #30b4c1;
+  -moz-box-shadow: 0 0 50px #30b4c1;
+  box-shadow: 0 0 50px #30b4c1;
+}
 /* Basic Stats Styles */
 h1 {
   font-size: 16pt;
