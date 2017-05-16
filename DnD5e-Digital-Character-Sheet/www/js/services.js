@@ -99,3 +99,25 @@ angular.module('starter.services', ['ngCordova'])
 
   return this;
 })
+
+.factory('Languages', function($cordovaSQLite, $q, $ionicPlatform, $rootScope, Database) {
+
+  // Executes any query will print to console any errors
+  this.getAll = function () {
+    var data = {
+      langs: []
+    };
+    return Database.executeQuery("SELECT languages.name"+
+      " FROM languages JOIN char_lang ON "+
+      "languages.id = char_lang.langID WHERE char_lang.charID = 1;", []).then(function(result){
+      for (var i = 0; i < result.rows.length; i++) {
+         data.langs.push({
+           name: result.rows.item(i).name,
+         });
+      }
+      return data;
+    });
+  }
+
+  return this;
+})

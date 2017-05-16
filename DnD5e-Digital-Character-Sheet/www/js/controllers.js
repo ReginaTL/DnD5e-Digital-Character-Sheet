@@ -380,4 +380,10 @@ angular.module('starter.controllers', ['starter.services'])
       return mod;
   };
 
+})
+
+.controller('DetailsCtrl', function($scope, $stateParams, $ionicPopup, Character, Languages) {
+  Character.getById(1).then(function(json){$scope.character = json;});
+
+  Languages.getAll().then(function(json){$scope.langs = json.langs;});
 });

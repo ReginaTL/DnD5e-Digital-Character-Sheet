@@ -1,0 +1,25 @@
+<ion-view view-title="Character Details">
+  <ion-content>
+    <h1>{{character.name}}</h1>
+    <h2>{{character.race}} {{character.class}} lvl {{character.level}}</h2>
+
+    <div class="row">
+      <div class="bubble bubbleExp">
+        <h4>Experience</h4>
+        <p>{{character.experience}}</p>
+      </div>
+    </div>
+
+    <div class="no-center">
+      <h2>Alignment: {{character.alignment}}</h2>
+      <h2>Background: {{character.background}}</h2>
+    </div>
+
+    <div>
+      <h2>Languages</h2>
+      <ion-list ng-repeat="lang in langs">
+        <ion-item>{{lang.name}}</ion-item>
+      </ion-list>
+    </div>
+  </ion-content>
+</ion-view>

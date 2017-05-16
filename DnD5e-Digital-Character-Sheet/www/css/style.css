@@ -60,3 +60,17 @@ h2 {
   margin-top: 0px;
   padding-top: 0px;
 }
+
+/* Character Details Styles */
+.bubbleExp{
+  margin-left: 39%;
+}
+
+.no-center{
+  margin-top: 5%;
+}
+
+.no-center > h2{
+  text-align: left;
+  margin-left: 5%;
+}

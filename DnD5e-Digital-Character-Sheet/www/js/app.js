@@ -53,6 +53,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
     $cordovaSQLite.execute($rootScope.db, "INSERT INTO skills(name, baseType) VALUES('Acrobatics', 'DEX'),('Animal Handling', 'WIS'), ('Arcana', 'INT'), ('Athletics', 'STR'), ('Deception', 'CHA'), ('History', 'INT'), ('Insight', 'WIS'), ('Intimidation', 'CHA'), ('Invesitgation', 'INT'), ('Medicine', 'WIS'), ('Nature', 'INT'), ('Perception', 'WIS'), ('Performance', 'CHA'), ('Persuasion', 'CHA'), ('Religion', 'CHA'), ('Sleight of Hand', 'DEX'), ('Stealth', 'DEX'), ('Survival', 'WIS');").then(function(result){},function(error){console.log(error);});
     // Setup example data
     $cordovaSQLite.execute($rootScope.db, "INSERT INTO character(name, race, class, level, experience, alignment, background, hp, currHP, speed, proficiency, hitdice, ac, strength, intelligence, constitution, dexterity, charisma, wisdom, spellAbility, spellSaveDC, spellAttackBonus, pp, gp, ep, sp, cp) VALUES ('Madame Daphne Blanchet Benoist', 'Tiefling', 'Warlock', 5, 0, 'neutral', 'courtier', 27, 20, 30, 3, '5d8', 14, 12, 16, 15, 15, 19, 18, 'CHA', 15, 6, 45, 220, 0, 0, 0);").then(function(result){},function(error){console.log(error);});
+    $cordovaSQLite.execute($rootScope.db, "INSERT INTO languages(name) VALUES ('Common'), ('Elven'), ('Infernal');").then(function(result){},function(error){console.log(error);});
+    $cordovaSQLite.execute($rootScope.db, "INSERT INTO char_lang(charID, langID) VALUES (1, 1), (1, 2), (1, 3);").then(function(result){},function(error){console.log(error);});
     $cordovaSQLite.execute($rootScope.db, "INSERT INTO char_skills(charID, skillName, proficient) VALUES(1, 'Acrobatics', 0),(1, 'Animal Handling', 0), (1, 'Arcana', 0), (1, 'Athletics', 0), (1, 'Deception', 1), (1, 'History', 1), (1, 'Insight', 1), (1, 'Intimidation', 0), (1, 'Invesitgation', 0), (1, 'Medicine', 0), (1, 'Nature', 0), (1, 'Perception', 0), (1, 'Performance', 0), (1, 'Persuasion', 1), (1, 'Religion', 0), (1, 'Sleight of Hand', 0), (1, 'Stealth', 0), (1, 'Survival', 0);").then(function(result){},function(error){console.log(error);});
   });
 })
@@ -97,11 +99,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
     }
   })
 
-  .state('app.browse', {
-      url: '/browse',
+  .state('app.details', {
+      url: '/details',
       views: {
         'menuContent': {
-          templateUrl: 'templates/browse.html'
+          templateUrl: 'templates/details.html',
+          controller: 'DetailsCtrl'
         }
       }
   });
