@@ -19,13 +19,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+    //$rootScope.db = $cordovaSQLite.openDB({ name: "database.db" });
+
     // Open the Database
     if (window.cordova) {
         // App/device syntax
-        $rootScope.db = $cordovaSQLite.openDB({ name: "database.db" });
+        $rootScope.db = $cordovaSQLite.openDB({name: "dbname.db", location: 1});
     } else {
         // Ionic serve syntax
-        $rootScope.db = window.openDatabase("database.db", '1.0', 'App Demo', 65536);
+        $rootScope.db = window.openDatabase("database.db", '1.0', 'App Demo', -1);
     }
 
     // Reset database when necessary on browser
