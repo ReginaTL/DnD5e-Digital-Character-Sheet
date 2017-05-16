@@ -119,5 +119,19 @@ angular.module('starter.services', ['ngCordova'])
     });
   }
 
+  this.setData = function(currName, langName){
+    return Database.executeQuery("UPDATE languages SET name = ? WHERE name = ?;", [langName, currName]);
+  }
+
+  this.insertData = function(name){
+    Database.executeQuery("INSERT INTO languages (name) VALUES (?);", [name]);
+    Database.executeQuery("SELECT id FROM languages WHERE name = ?;", [name]).then(function(result){
+      id = result.rows.item(0).id;
+      Database.executeQuery("INSERT INTO char_lang (charID, langID) VALUES (1, ?);", [id]);
+      $rootScope.$broadcast('update');
+      //console.log("Finished service");
+    });
+  }
+
   return this;
 })

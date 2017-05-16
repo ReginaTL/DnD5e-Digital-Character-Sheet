@@ -386,4 +386,160 @@ angular.module('starter.controllers', ['starter.services'])
   Character.getById(1).then(function(json){$scope.character = json;});
 
   Languages.getAll().then(function(json){$scope.langs = json.langs;});
+
+  $scope.$on('update', function(event, args) {
+    Character.getById(1).then(function(json){$scope.character = json;});
+    Languages.getAll().then(function(json){$scope.langs = json.langs;});
+  });
+})
+
+.controller('DetailsEditCtrl', function($scope, $stateParams, $ionicPopup, Character, Languages) {
+  Character.getById(1).then(function(json){$scope.character = json;});
+
+  Languages.getAll().then(function(json){$scope.langs = json.langs;});
+
+  $scope.$on('update', function(event, args) {
+    Character.getById(1).then(function(json){$scope.character = json;});
+    Languages.getAll().then(function(json){$scope.langs = json.langs;});
+  });
+
+  $scope.charEdit = function(){
+    $scope.data = {};
+
+    var myPopup = $ionicPopup.show({
+    template: '<input type="text" ng-model="data.name" placeholder="'+$scope.character.name+'">'+
+                  '<input type="text" ng-model="data.race" placeholder="'+$scope.character.race+'">'+
+                  '<input type="text" ng-model="data.class" placeholder="'+$scope.character.class+'">'+
+                  '<input type="number" ng-model="data.level" placeholder="'+$scope.character.level+'">',
+    title: 'Enter a new name, race, class, and level:',
+    subTitle: '',
+    scope: $scope,
+    buttons: [
+      { text: 'Cancel' },
+      {
+        text: '<b>Ok</b>',
+        type: 'button my-red',
+        onTap: function(e) {
+          Character.setData('name', 1, $scope.data.name);
+          Character.setData('race', 1, $scope.data.race);
+          Character.setData('class', 1, $scope.data.class);
+          Character.setData('level', 1, $scope.data.level);
+          Character.getById(1).then(function(json){$scope.character = json;});
+        }
+      }
+    ]
+    });
+  };
+
+  $scope.expEdit = function(){
+    $scope.data = {};
+
+    var myPopup = $ionicPopup.show({
+    template: '<input type="number" ng-model="data.experience" placeholder="'+$scope.character.experience+'">',
+    title: 'Enter new Experience:',
+    subTitle: '',
+    scope: $scope,
+    buttons: [
+      { text: 'Cancel' },
+      {
+        text: '<b>Ok</b>',
+        type: 'button my-red',
+        onTap: function(e) {
+          //console.log($scope.data.experience);
+          Character.setData('experience', 1, $scope.data.experience);
+          Character.getById(1).then(function(json){$scope.character = json;});
+        }
+      }
+    ]
+    });
+  };
+
+  $scope.alEdit = function(){
+    $scope.data = {};
+
+    var myPopup = $ionicPopup.show({
+    template: '<input type="text" ng-model="data.input" placeholder="'+$scope.character.alignment+'">',
+    title: 'Enter new Alignment:',
+    subTitle: '',
+    scope: $scope,
+    buttons: [
+      { text: 'Cancel' },
+      {
+        text: '<b>Ok</b>',
+        type: 'button my-red',
+        onTap: function(e) {
+          Character.setData('alignment', 1, $scope.data.input);
+          Character.getById(1).then(function(json){$scope.character = json;});
+        }
+      }
+    ]
+    });
+  };
+
+  $scope.bacEdit = function(){
+    $scope.data = {};
+
+    var myPopup = $ionicPopup.show({
+    template: '<input type="text" ng-model="data.input" placeholder="'+$scope.character.background+'">',
+    title: 'Enter new Background:',
+    subTitle: '',
+    scope: $scope,
+    buttons: [
+      { text: 'Cancel' },
+      {
+        text: '<b>Ok</b>',
+        type: 'button my-red',
+        onTap: function(e) {
+          Character.setData('background', 1, $scope.data.input);
+          Character.getById(1).then(function(json){$scope.character = json;});
+        }
+      }
+    ]
+    });
+  };
+
+  $scope.langEdit = function(oldname){
+    $scope.data = {};
+
+    var myPopup = $ionicPopup.show({
+    template: '<input type="text" ng-model="data.input" placeholder="'+oldname+'">',
+    title: 'Enter new Language Name:',
+    subTitle: '',
+    scope: $scope,
+    buttons: [
+      { text: 'Cancel' },
+      {
+        text: '<b>Ok</b>',
+        type: 'button my-red',
+        onTap: function(e) {
+          Languages.setData(oldname, $scope.data.input);
+          Languages.getAll().then(function(json){$scope.langs = json.langs;});
+        }
+      }
+    ]
+    });
+  };
+
+  $scope.newLang = function(){
+    $scope.data = {};
+
+    var myPopup = $ionicPopup.show({
+    template: '<input type="text" ng-model="data.input">',
+    title: 'Enter a new Language:',
+    subTitle: '',
+    scope: $scope,
+    buttons: [
+      { text: 'Cancel' },
+      {
+        text: '<b>Ok</b>',
+        type: 'button my-red',
+        onTap: function(e) {
+          Languages.insertData($scope.data.input);
+          Languages.getAll().then(function(json){$scope.langs = json.langs;});
+        }
+      }
+    ]
+    });
+  };
+
 });

@@ -29,7 +29,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
     }
 
     // Reset database when necessary on browser
-    $cordovaSQLite.execute($rootScope.db, "DROP TABLE character;");
+    /*$cordovaSQLite.execute($rootScope.db, "DROP TABLE character;");
     $cordovaSQLite.execute($rootScope.db, "DROP TABLE skills;");
     $cordovaSQLite.execute($rootScope.db, "DROP TABLE char_skills;");
     $cordovaSQLite.execute($rootScope.db, "DROP TABLE equipment;");
@@ -37,7 +37,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
     $cordovaSQLite.execute($rootScope.db, "DROP TABLE spells;");
     $cordovaSQLite.execute($rootScope.db, "DROP TABLE char_spells;");
     $cordovaSQLite.execute($rootScope.db, "DROP TABLE languages;");
-    $cordovaSQLite.execute($rootScope.db, "DROP TABLE char_lang;");
+    $cordovaSQLite.execute($rootScope.db, "DROP TABLE char_lang;");*/
 
     // Setup Tables
     $cordovaSQLite.execute($rootScope.db, "CREATE TABLE IF NOT EXISTS character(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, race TEXT, class TEXT, level INT, experience INT, alignment TEXT, background TEXT, hp INT, currHP INT, speed INT, proficiency INT, hitdice TEXT, ac INT, strength INT, intelligence INT, constitution INT, dexterity INT, charisma INT, wisdom INT, spellAbility TEXT, spellSaveDC INT, spellAttackBonus INT, pp INT, gp INT, ep INT, sp INT, cp INT);").then(function(result){},function(error){console.log(error);});
@@ -105,6 +105,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
         'menuContent': {
           templateUrl: 'templates/details.html',
           controller: 'DetailsCtrl'
+        }
+      }
+  })
+
+  .state('app.details-edit', {
+      url: '/details-edit',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/details-edit.html',
+          controller: 'DetailsEditCtrl'
         }
       }
   });

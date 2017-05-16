@@ -1,0 +1,25 @@
+<ion-view view-title="Character Details">
+  <ion-content>
+    <h1>{{character.name}}</h1>
+    <h2><span class="icon ion-edit" ng-click="charEdit()"></span>{{character.race}} {{character.class}} lvl {{character.level}}</h2>
+
+    <div class="row">
+      <div class="bubble bubbleExp" ng-click="expEdit()">
+        <h4>Experience</h4>
+        <p class="my-blue">{{character.experience}}</p>
+      </div>
+    </div>
+
+    <div class="no-center">
+      <h2><span class="icon ion-edit" ng-click="alEdit()"></span>Alignment: {{character.alignment}}</h2>
+      <h2><span class="icon ion-edit" ng-click="bacEdit()"></span>Background: {{character.background}}</h2>
+    </div>
+
+    <div>
+      <h2>Languages <span class="icon ion-plus" ng-click="newLang()"></span></h2>
+      <ion-list ng-repeat="lang in langs">
+        <ion-item>{{lang.name}} <span class="icon ion-edit" ng-click="langEdit(lang.name)"></span></ion-item>
+      </ion-list>
+    </div>
+  </ion-content>
+</ion-view>
