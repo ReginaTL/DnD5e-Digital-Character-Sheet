@@ -31,6 +31,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
     // Reset database when necessary on browser
     $cordovaSQLite.execute($rootScope.db, "DROP TABLE character;");
     $cordovaSQLite.execute($rootScope.db, "DROP TABLE skills;");
+    $cordovaSQLite.execute($rootScope.db, "DROP TABLE char_skills;");
     $cordovaSQLite.execute($rootScope.db, "DROP TABLE equipment;");
     $cordovaSQLite.execute($rootScope.db, "DROP TABLE char_equip;");
     $cordovaSQLite.execute($rootScope.db, "DROP TABLE spells;");
@@ -41,6 +42,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
     // Setup Tables
     $cordovaSQLite.execute($rootScope.db, "CREATE TABLE IF NOT EXISTS character(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, race TEXT, class TEXT, level INT, experience INT, alignment TEXT, background TEXT, hp INT, currHP INT, speed INT, proficiency INT, hitdice TEXT, ac INT, strength INT, intelligence INT, constitution INT, dexterity INT, charisma INT, wisdom INT, spellAbility TEXT, spellSaveDC INT, spellAttackBonus INT, pp INT, gp INT, ep INT, sp INT, cp INT);").then(function(result){},function(error){console.log(error);});
     $cordovaSQLite.execute($rootScope.db, "CREATE TABLE IF NOT EXISTS skills(name TEXT, baseType TEXT);").then(function(result){},function(error){console.log(error);});
+    $cordovaSQLite.execute($rootScope.db, "CREATE TABLE IF NOT EXISTS char_skills(charID INTEGER, skillName TEXT, proficient INTEGER);").then(function(result){},function(error){console.log(error);});
     $cordovaSQLite.execute($rootScope.db, "CREATE TABLE IF NOT EXISTS equipment(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, damageType TEXT, damageDice, TEXT, bonus INT);").then(function(result){},function(error){console.log(error);});
     $cordovaSQLite.execute($rootScope.db, "CREATE TABLE IF NOT EXISTS char_equip(charID INT, equipID INT);").then(function(result){},function(error){console.log(error);});
     $cordovaSQLite.execute($rootScope.db, "CREATE TABLE IF NOT EXISTS spells(id INTEGER PRIMARY KEY AUTOINCREMENT, level INT);").then(function(result){},function(error){console.log(error);});
@@ -51,6 +53,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
     $cordovaSQLite.execute($rootScope.db, "INSERT INTO skills(name, baseType) VALUES('Acrobatics', 'DEX'),('Animal Handling', 'WIS'), ('Arcana', 'INT'), ('Athletics', 'STR'), ('Deception', 'CHA'), ('History', 'INT'), ('Insight', 'WIS'), ('Intimidation', 'CHA'), ('Invesitgation', 'INT'), ('Medicine', 'WIS'), ('Nature', 'INT'), ('Perception', 'WIS'), ('Performance', 'CHA'), ('Persuasion', 'CHA'), ('Religion', 'CHA'), ('Sleight of Hand', 'DEX'), ('Stealth', 'DEX'), ('Survival', 'WIS');").then(function(result){},function(error){console.log(error);});
     // Setup example data
     $cordovaSQLite.execute($rootScope.db, "INSERT INTO character(name, race, class, level, experience, alignment, background, hp, currHP, speed, proficiency, hitdice, ac, strength, intelligence, constitution, dexterity, charisma, wisdom, spellAbility, spellSaveDC, spellAttackBonus, pp, gp, ep, sp, cp) VALUES ('Madame Daphne Blanchet Benoist', 'Tiefling', 'Warlock', 5, 0, 'neutral', 'courtier', 27, 20, 30, 3, '5d8', 14, 12, 16, 15, 15, 19, 18, 'CHA', 15, 6, 45, 220, 0, 0, 0);").then(function(result){},function(error){console.log(error);});
+    $cordovaSQLite.execute($rootScope.db, "INSERT INTO char_skills(charID, skillName, proficient) VALUES(1, 'Acrobatics', 0),(1, 'Animal Handling', 0), (1, 'Arcana', 0), (1, 'Athletics', 0), (1, 'Deception', 1), (1, 'History', 1), (1, 'Insight', 1), (1, 'Intimidation', 0), (1, 'Invesitgation', 0), (1, 'Medicine', 0), (1, 'Nature', 0), (1, 'Perception', 0), (1, 'Performance', 0), (1, 'Persuasion', 1), (1, 'Religion', 0), (1, 'Sleight of Hand', 0), (1, 'Stealth', 0), (1, 'Survival', 0);").then(function(result){},function(error){console.log(error);});
   });
 })
 
@@ -80,6 +83,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
       'menuContent': {
         templateUrl: 'templates/stats-edit.html',
         controller: 'StatsEditCtrl'
+      }
+    }
+  })
+
+  .state('app.skills', {
+    url: '/skills',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/skills.html',
+        controller: 'SkillsCtrl'
       }
     }
   })

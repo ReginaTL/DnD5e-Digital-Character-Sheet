@@ -71,3 +71,31 @@ angular.module('starter.services', ['ngCordova'])
 
   return this;
 })
+
+.factory('Skills', function($cordovaSQLite, $q, $ionicPlatform, $rootScope, Database) {
+
+  // Executes any query will print to console any errors
+  this.getAll = function () {
+    var data = {
+      skills: []
+    };
+    return Database.executeQuery("SELECT skills.name, skills.baseType, "+
+      "char_skills.proficient FROM skills "+
+      "JOIN char_skills ON skills.name = char_skills.skillName WHERE char_skills.charID = 1;", []).then(function(result){
+      for (var i = 0; i < result.rows.length; i++) {
+        var val = false;
+        if (result.rows.item(i).proficient == 1) {
+          val = true;
+        }
+         data.skills.push({
+           name: result.rows.item(i).name,
+           baseType: result.rows.item(i).baseType,
+           proficient: val
+         });
+      }
+      return data;
+    });
+  }
+
+  return this;
+})

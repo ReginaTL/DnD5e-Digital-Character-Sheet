@@ -1,0 +1,11 @@
+<ion-view view-title="Skills">
+  <ion-content>
+    <h1>{{character.name}}</h1>
+    <h2>{{character.race}} {{character.class}} lvl {{character.level}}</h2>
+    <ion-list ng-repeat="skill in skills">
+      <ion-toggle ng-model="skill.proficient" toggle-class="toggle-assertive">
+        {{skill.name}} {{calculateBonus(skill)}}
+      </ion-toggle>
+    </ion-list>
+  </ion-content>
+</ion-view>

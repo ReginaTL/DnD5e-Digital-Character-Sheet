@@ -64,7 +64,12 @@ angular.module('starter.controllers', ['starter.services'])
   };
 
   $scope.calculateModifier = function(stat){
-    return Math.floor((stat-10)/2);
+    if (Math.floor((stat-10)/2) < 0) {
+      return Math.floor((stat-10)/2);
+    }
+    else {
+      return ("+"+Math.floor((stat-10)/2));
+    }
   };
 })
 
@@ -325,4 +330,54 @@ angular.module('starter.controllers', ['starter.services'])
   $scope.calculateModifier = function(stat){
     return Math.floor((stat-10)/2);
   };
+})
+
+.controller('SkillsCtrl', function($scope, $stateParams, $ionicPopup, Database, Skills, Character) {
+  Character.getById(1).then(function(json){$scope.character = json;});
+
+  $scope.calculateModifier = function(stat){
+    if (Math.floor((stat-10)/2) < 0) {
+      return Math.floor((stat-10)/2);
+    }
+    else {
+      return ("+"+Math.floor((stat-10)/2));
+    }
+
+  };
+
+  Skills.getAll().then(function(json){
+    $scope.skills = json.skills;
+  });
+
+  $scope.calculateBonus = function(skill){
+      var mod = 0;
+      if (skill.proficient) {
+        mod = parseInt($scope.character.proficiency);
+      }
+
+      if (skill.baseType == "DEX") {
+        mod += parseInt($scope.calculateModifier($scope.character.dexterity));
+      }
+      else if (skill.baseType == "STR") {
+        mod += parseInt($scope.calculateModifier($scope.character.strength));
+      }
+      else if (skill.baseType == "CHA") {
+        mod += parseInt($scope.calculateModifier($scope.character.charisma));
+      }
+      else if (skill.baseType == "CON") {
+        mod += parseInt($scope.calculateModifier($scope.character.constitution));
+      }
+      else if (skill.baseType == "WIS") {
+        mod += parseInt($scope.calculateModifier($scope.character.wisdom));
+      }
+      else if (skill.baseType == "INT") {
+        mod += parseInt($scope.calculateModifier($scope.character.intelligence));
+      }
+
+      if(mod > 0){
+        return "+"+mod;
+      }
+      return mod;
+  };
+
 });
